@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Roastline Coffee — Bot Screenshots</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    background: #e7ebf0;
+  }
+  .phone, .webapp-frame {
+    width: 360px;
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #d8dde2;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+  }
+  .phone-header {
+    background: #f7f9fb;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e6eaef;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .phone-body {
+    background: #f0f3f7;
+    flex: 1;
+    padding: 14px 12px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bubble-bot {
+    align-self: flex-start;
+    background: #ffffff;
+    color: #0f1419;
+    padding: 10px 14px;
+    border-radius: 14px 14px 14px 4px;
+    max-width: 92%;
+    font-size: 14px;
+    line-height: 1.45;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+  }
+  .bubble-user {
+    align-self: flex-end;
+    background: #d4f4d6;
+    color: #0f1419;
+    padding: 10px 14px;
+    border-radius: 14px 14px 4px 14px;
+    max-width: 80%;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .keyboard {
+    align-self: flex-start;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .kb-row { display: flex; gap: 6px; }
+  .kb-btn {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #d4dbe3;
+    border-radius: 10px;
+    padding: 10px 8px;
+    font-size: 13px;
+    color: #0f1419;
+    text-align: center;
+  }
+  .kb-btn-primary {
+    background: #e8f3ff;
+    border-color: #b3d4ff;
+    color: #1a73e8;
+    font-weight: 500;
+  }
+  .kb-btn-pay {
+    background: #2481cc;
+    border-color: #2481cc;
+    color: white;
+    font-weight: 600;
+  }
+  .day-divider {
+    align-self: center;
+    background: rgba(0,0,0,0.06);
+    color: #5d6770;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin: 4px 0;
+  }
+  .small-label {
+    color: #6c7783;
+    font-size: 11px;
+    text-align: right;
+    padding: 6px 14px;
+  }
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 30px;
+    max-width: 1620px;
+    margin: 0 auto;
+  }
+  .screen-frame { display: flex; justify-content: center; }
+  .invoice {
+    align-self: flex-start;
+    background: white;
+    border-radius: 14px 14px 14px 4px;
+    overflow: hidden;
+    width: 92%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .invoice-photo {
+    height: 110px;
+    background: linear-gradient(135deg, #6f4e37 0%, #c69d6d 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 50px;
+  }
+  .invoice-body { padding: 12px 16px; font-size: 13px; }
+  .invoice-pay-btn {
+    background: #2481cc;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .inline-result {
+    background: white;
+    border-bottom: 1px solid #eef1f5;
+    padding: 8px 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .inline-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6f4e37, #c69d6d);
+    flex-shrink: 0;
+  }
+  .webapp-card {
+    background: #f0f3f7;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="grid-wrapper">
+
+<div class="screen-frame"><div class="phone" id="screen-main-menu">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="day-divider">Today</div>
+    <div class="bubble-user">/start</div>
+    <div class="bubble-bot">
+      👋 <b>Welcome to Roastline Coffee</b><br><br>
+      We deliver freshly roasted specialty coffee right to your door.<br><br>
+      • 🛍 Browse the catalog<br>
+      • 🧺 Add items to your cart<br>
+      • ✅ Place an order in under a minute<br><br>
+      Tap a button below to get started.
+    </div>
+    <div class="keyboard">
+      <div class="kb-row"><button class="kb-btn kb-btn-primary">🛍 Catalog</button><button class="kb-btn">🧺 Cart</button></div>
+      <div class="kb-row"><button class="kb-btn">📦 My orders</button><button class="kb-btn">ℹ️ About</button></div>
+      <div class="kb-row"><button class="kb-btn kb-btn-primary">🌐 Open Shop</button></div>
+    </div>
+  </div>
+  <div class="small-label">01 · main menu</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-catalog">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-bot">🛍 <b>Choose a category</b></div>
+    <div class="keyboard">
+      <div class="kb-row"><button class="kb-btn">☕ Hot Coffee Drinks</button></div>
+      <div class="kb-row"><button class="kb-btn">🧊 Cold Coffee</button></div>
+      <div class="kb-row"><button class="kb-btn">🍵 Tea & Other</button></div>
+      <div class="kb-row"><button class="kb-btn">🥐 Pastries & Desserts</button></div>
+      <div class="kb-row"><button class="kb-btn">🌱 Single Origin Beans</button></div>
+      <div class="kb-row"><button class="kb-btn">🫘 Espresso Blends</button></div>
+      <div class="kb-row"><button class="kb-btn">⚙️ Brewing Equipment</button></div>
+      <div class="kb-row"><button class="kb-btn">🎁 Accessories</button></div>
+      <div class="kb-row"><button class="kb-btn">🧺 Cart</button><button class="kb-btn">🏠 Home</button></div>
+    </div>
+  </div>
+  <div class="small-label">02 · catalog</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-product">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="invoice">
+      <div class="invoice-photo">☕</div>
+      <div class="invoice-body">
+        <div class="font-semibold text-[14px] mb-1">Ethiopian Yirgacheffe (250 g)</div>
+        <div class="text-[13px] text-gray-700 mb-2 leading-relaxed">
+          Bright and floral with notes of jasmine, bergamot and ripe peach.
+          Washed process, light roast. Perfect for pour-over.
+        </div>
+        <div class="text-[15px] font-bold text-[#1a73e8]">💵 $18.50</div>
+      </div>
+    </div>
+    <div class="keyboard">
+      <div class="kb-row"><button class="kb-btn kb-btn-primary">➕ Add to cart</button></div>
+      <div class="kb-row"><button class="kb-btn">⬅️ Back</button><button class="kb-btn">🧺 Cart</button></div>
+    </div>
+  </div>
+  <div class="small-label">03 · product detail</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-cart">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-bot">
+      🧺 <b>Your cart</b><br><br>
+      • Ethiopian Yirgacheffe (250 g)<br>&nbsp;&nbsp;&nbsp;1 × $18.50 = <b>$18.50</b><br>
+      • Caffè Latte<br>&nbsp;&nbsp;&nbsp;2 × $5.20 = <b>$10.40</b><br>
+      • Butter Croissant<br>&nbsp;&nbsp;&nbsp;1 × $4.20 = <b>$4.20</b><br><br>
+      <b>Total: $33.10</b>
+    </div>
+    <div class="keyboard">
+      <div class="kb-row">
+        <button class="kb-btn">➖</button>
+        <button class="kb-btn">Yirgacheffe × 1</button>
+        <button class="kb-btn">➕</button>
+        <button class="kb-btn">🗑</button>
+      </div>
+      <div class="kb-row">
+        <button class="kb-btn">➖</button>
+        <button class="kb-btn">Caffè Latte × 2</button>
+        <button class="kb-btn">➕</button>
+        <button class="kb-btn">🗑</button>
+      </div>
+      <div class="kb-row"><button class="kb-btn kb-btn-primary">✅ Checkout</button></div>
+      <div class="kb-row"><button class="kb-btn">🧹 Clear cart</button></div>
+      <div class="kb-row"><button class="kb-btn">🛍 Catalog</button><button class="kb-btn">🏠 Home</button></div>
+    </div>
+  </div>
+  <div class="small-label">04 · cart</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-promo">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-bot"><b>Step 1 of 3.</b> Please send me your full name.</div>
+    <div class="bubble-user">John Smith</div>
+    <div class="bubble-bot"><b>Step 2 of 3.</b> Please send your phone number.</div>
+    <div class="bubble-user">+1 555 123 4567</div>
+    <div class="bubble-bot"><b>Step 3 of 3.</b> Please send the delivery address.</div>
+    <div class="bubble-user">5 Main St, Springfield</div>
+    <div class="bubble-bot">
+      <b>Promo code</b> (optional)<br><br>
+      Send a promo code to apply a discount, or send <code>skip</code> to continue without one.
+    </div>
+    <div class="bubble-user">SPRING10</div>
+    <div class="keyboard"><div class="kb-row"><button class="kb-btn">❌ Cancel checkout</button></div></div>
+  </div>
+  <div class="small-label">05 · promo step</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-checkout">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-bot">
+      Please review your order:<br><br>
+      <b>Name:</b> John Smith<br>
+      <b>Phone:</b> +1 555 123 4567<br>
+      <b>Address:</b> 5 Main St, Springfield<br><br>
+      <b>Items:</b><br>
+      • Ethiopian Yirgacheffe — 1 × $18.50 = <b>$18.50</b><br>
+      • Caffè Latte — 2 × $5.20 = <b>$10.40</b><br>
+      • Butter Croissant — 1 × $4.20 = <b>$4.20</b><br><br>
+      Subtotal: $33.10<br>
+      Promo <code>SPRING10</code>: −$3.31<br>
+      <b>Total: $29.79</b>
+    </div>
+    <div class="keyboard">
+      <div class="kb-row"><button class="kb-btn kb-btn-pay">💳 Pay with card</button></div>
+      <div class="kb-row"><button class="kb-btn kb-btn-primary">✅ Confirm (pay on delivery)</button></div>
+      <div class="kb-row"><button class="kb-btn">❌ Cancel</button></div>
+    </div>
+  </div>
+  <div class="small-label">06 · review with discount</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-payment">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="invoice">
+      <div class="invoice-photo">☕</div>
+      <div class="invoice-body">
+        <div class="font-semibold text-[14px] mb-1">Roastline Coffee order</div>
+        <div class="text-[12px] text-gray-600 mb-3">3 items · pay with your card</div>
+        <div class="text-[13px] mb-1 flex justify-between"><span>Ethiopian Yirgacheffe × 1</span><span>$18.50</span></div>
+        <div class="text-[13px] mb-1 flex justify-between"><span>Caffè Latte × 2</span><span>$10.40</span></div>
+        <div class="text-[13px] mb-1 flex justify-between"><span>Butter Croissant × 1</span><span>$4.20</span></div>
+        <div class="text-[13px] mb-2 flex justify-between text-[#cc4a25]"><span>Promo SPRING10 discount</span><span>−$3.31</span></div>
+        <div class="border-t pt-2 mt-1 flex justify-between font-bold text-[14px]"><span>TOTAL</span><span>$29.79 USD</span></div>
+      </div>
+      <div class="invoice-pay-btn">PAY $29.79</div>
+    </div>
+    <div class="bubble-bot text-[12px] text-gray-500">
+      Test card: <b>5555 5555 5555 4444</b> · 12/30 · 123<br>No real money charged.
+    </div>
+  </div>
+  <div class="small-label">07 · payment invoice</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-payment-success">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · online</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-bot" style="background:#e6f7ea">
+      💳 <b>Payment received — thank you!</b><br><br>
+      Order: <b>#42</b><br>
+      Charged: <b>$29.79 USD</b><br><br>
+      We'll start preparing your order right away. ☕
+    </div>
+    <div class="bubble-bot">
+      📦 <b>Order #42 update</b><br><br>
+      Status: ✅ Confirmed<br>Total: $29.79<br><br>
+      ✅ Thanks! Your order has been accepted and we're preparing it.
+    </div>
+    <div class="bubble-bot">
+      📦 <b>Order #42 update</b><br><br>
+      Status: 🚚 Shipping<br>Total: $29.79<br><br>
+      🚚 Your order is on its way. Expect delivery in 1–3 business days.
+    </div>
+    <div class="keyboard">
+      <div class="kb-row"><button class="kb-btn kb-btn-primary">🛍 Catalog</button><button class="kb-btn">🧺 Cart</button></div>
+      <div class="kb-row"><button class="kb-btn">📦 My orders</button><button class="kb-btn">ℹ️ About</button></div>
+    </div>
+  </div>
+  <div class="small-label">08 · payment + status updates</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-owner">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · owner</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-bot" style="background:#fff5e6;border-left:3px solid #ff9933;padding-left:12px">
+      💳 <b>NEW PAID ORDER</b><br><br>
+      🧾 <b>Order #42</b><br>
+      <b>Name:</b> John Smith<br>
+      <b>Phone:</b> +1 555 123 4567<br>
+      <b>Address:</b> 5 Main St, Springfield<br><br>
+      <b>Items:</b><br>
+      • Ethiopian Yirgacheffe — 1 × 18.50 = 18.50 USD<br>
+      • Caffè Latte — 2 × 5.20 = 10.40 USD<br>
+      • Butter Croissant — 1 × 4.20 = 4.20 USD<br><br>
+      Subtotal: 33.10 USD<br>
+      Promo <code>SPRING10</code>: −3.31 USD<br>
+      <b>Total: 29.79 USD</b><br>
+      <i>💳 Paid via telegram_payments</i><br><br>
+      <b>Customer:</b> @johnsmith (id <code>123456789</code>)
+    </div>
+  </div>
+  <div class="small-label">09 · owner notification</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-order-admin">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · admin</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-user">/order 42</div>
+    <div class="bubble-bot">
+      🧾 <b>Order #42</b> — ✅ Confirmed<br>
+      <b>Created:</b> 2026-05-02 11:42<br>
+      <b>Customer:</b> John Smith<br>
+      <b>Phone:</b> +1 555 123 4567<br>
+      <b>Address:</b> 5 Main St, Springfield<br>
+      <b>User id:</b> <code>123456789</code><br>
+      <b>Username:</b> @johnsmith<br><br>
+      <b>Items:</b><br>
+      • Ethiopian Yirgacheffe — 1 × $18.50 = $18.50<br>
+      • Caffè Latte — 2 × $5.20 = $10.40<br>
+      • Butter Croissant — 1 × $4.20 = $4.20<br><br>
+      Subtotal: $33.10<br>
+      Promo <code>SPRING10</code>: −$3.31<br>
+      <b>Total: $29.79</b><br>
+      <i>💳 Paid via telegram_payments</i>
+    </div>
+    <div class="keyboard">
+      <div class="kb-row"><button class="kb-btn kb-btn-primary">➡ 🚚 Shipping</button></div>
+      <div class="kb-row"><button class="kb-btn">➡ ❌ Cancelled</button></div>
+      <div class="kb-row"><button class="kb-btn">🔄 Refresh</button></div>
+    </div>
+  </div>
+  <div class="small-label">10 · order status admin</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-stats">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">Roastline Coffee</div><div class="text-[12px] text-gray-500">bot · admin</div></div>
+  </div>
+  <div class="phone-body">
+    <div class="bubble-user">/stats</div>
+    <div class="bubble-bot">
+      📊 <b>Sales overview</b><br><br>
+      💰 <b>Total revenue:</b> $1,247.85<br>
+      &nbsp;&nbsp;&nbsp;Today: $87.40<br>
+      &nbsp;&nbsp;&nbsp;7 days: $384.20<br>
+      &nbsp;&nbsp;&nbsp;30 days: $1,247.85<br><br>
+      🧾 <b>Orders:</b> 47 (32 paid via card)<br>
+      💵 <b>Avg order value:</b> $26.55<br>
+      👥 <b>Unique customers:</b> 31<br><br>
+      <b>Status breakdown:</b><br>
+      &nbsp;&nbsp;✅ Confirmed: 8<br>
+      &nbsp;&nbsp;📬 Delivered: 35<br>
+      &nbsp;&nbsp;🚚 Shipping: 3<br>
+      &nbsp;&nbsp;❌ Cancelled: 1<br><br>
+      🏆 <b>Top 5 products:</b><br>
+      &nbsp;&nbsp;1. Caffè Latte — 38 units · $197.60<br>
+      &nbsp;&nbsp;2. Cappuccino — 27 units · $129.60<br>
+      &nbsp;&nbsp;3. Ethiopian Yirgacheffe — 18 units · $333.00<br>
+      &nbsp;&nbsp;4. Butter Croissant — 16 units · $67.20<br>
+      &nbsp;&nbsp;5. Cold Brew — 14 units · $72.80
+    </div>
+  </div>
+  <div class="small-label">11 · /stats dashboard</div>
+</div></div>
+
+<div class="screen-frame"><div class="phone" id="screen-inline-search">
+  <div class="phone-header">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center text-2xl" style="background:#6f4e37;color:white">☕</div>
+    <div><div class="font-semibold text-[15px]">@VelvetMorning_bot ethiopian</div><div class="text-[12px] text-gray-500">inline search</div></div>
+  </div>
+  <div class="phone-body" style="background:white;padding:0">
+    <div class="inline-result">
+      <div class="inline-thumb"></div>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-[14px]">Ethiopian Yirgacheffe (250 g) — $18.50</div>
+        <div class="text-[12px] text-gray-500 truncate">Bright and floral with notes of jasmine, bergamot…</div>
+      </div>
+    </div>
+    <div class="inline-result">
+      <div class="inline-thumb"></div>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-[14px]">House Espresso Blend — $38.00</div>
+        <div class="text-[12px] text-gray-500 truncate">Our signature 70/30 Brazil-Ethiopia blend…</div>
+      </div>
+    </div>
+    <div class="inline-result">
+      <div class="inline-thumb"></div>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-[14px]">Decaf Swiss Water Blend — $21.00</div>
+        <div class="text-[12px] text-gray-500 truncate">99.9% caffeine-free Swiss Water process…</div>
+      </div>
+    </div>
+    <div class="inline-result">
+      <div class="inline-thumb"></div>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-[14px]">Brazil Cerrado (250 g) — $14.00</div>
+        <div class="text-[12px] text-gray-500 truncate">Low-acidity, smooth and nutty with notes of…</div>
+      </div>
+    </div>
+  </div>
+  <div class="small-label">12 · inline search</div>
+</div></div>
+
+<div class="screen-frame"><div class="webapp-frame" id="screen-webapp-home">
+  <div class="phone-header">
+    <div class="font-semibold text-[15px]">Velvet Morning</div>
+    <div class="ml-auto flex gap-3 text-gray-400"><span>⋮</span><span>✕</span></div>
+  </div>
+  <div style="padding:18px 16px;background:white">
+    <div class="text-center mb-5">
+      <h1 class="text-xl font-bold mb-1">☕ Roastline Coffee</h1>
+      <p class="text-[12px] text-gray-500">Specialty coffee, delivered.</p>
+    </div>
+    <div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">☕ Hot Coffee Drinks</span><span class="text-[12px] text-gray-500">8 →</span></div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">🧊 Cold Coffee</span><span class="text-[12px] text-gray-500">6 →</span></div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">🍵 Tea & Other</span><span class="text-[12px] text-gray-500">5 →</span></div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">🥐 Pastries & Desserts</span><span class="text-[12px] text-gray-500">6 →</span></div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">🌱 Single Origin Beans</span><span class="text-[12px] text-gray-500">5 →</span></div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">🫘 Espresso Blends</span><span class="text-[12px] text-gray-500">3 →</span></div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">⚙️ Brewing Equipment</span><span class="text-[12px] text-gray-500">4 →</span></div>
+      <div class="webapp-card"><span class="text-[14px] font-medium">🎁 Accessories</span><span class="text-[12px] text-gray-500">3 →</span></div>
+      <button style="background:#2481cc;color:white;width:100%;padding:12px;border-radius:12px;font-weight:600;margin-top:12px">🧺 View Cart</button>
+    </div>
+  </div>
+  <div class="small-label">13 · WebApp home</div>
+</div></div>
+
+<div class="screen-frame"><div class="webapp-frame" id="screen-webapp-cart">
+  <div class="phone-header">
+    <div class="font-semibold text-[15px]">Velvet Morning</div>
+    <div class="ml-auto flex gap-3 text-gray-400"><span>⋮</span><span>✕</span></div>
+  </div>
+  <div style="padding:18px 16px;background:white">
+    <button class="text-[#2481cc] mb-3 text-[13px]">← Back</button>
+    <h2 class="text-lg font-bold mb-3">🧺 Your Cart</h2>
+    <div class="space-y-2">
+      <div class="bg-gray-100 p-3 rounded-xl">
+        <div class="flex justify-between mb-2">
+          <span class="text-[13px] font-medium">Caffè Latte</span>
+          <span class="font-bold">$10.40</span>
+        </div>
+        <div class="flex items-center gap-2 text-[12px]">
+          <button class="bg-white px-2 py-1 rounded">−</button>
+          <span>2</span>
+          <button style="background:#2481cc;color:white;padding:2px 8px;border-radius:4px">+</button>
+          <span class="text-gray-500 ml-2">× $5.20</span>
+        </div>
+      </div>
+      <div class="bg-gray-100 p-3 rounded-xl">
+        <div class="flex justify-between mb-2">
+          <span class="text-[13px] font-medium">Cappuccino</span>
+          <span class="font-bold">$4.80</span>
+        </div>
+        <div class="flex items-center gap-2 text-[12px]">
+          <button class="bg-white px-2 py-1 rounded">−</button>
+          <span>1</span>
+          <button style="background:#2481cc;color:white;padding:2px 8px;border-radius:4px">+</button>
+          <span class="text-gray-500 ml-2">× $4.80</span>
+        </div>
+      </div>
+      <div class="bg-gray-100 p-3 rounded-xl">
+        <div class="flex justify-between mb-2">
+          <span class="text-[13px] font-medium">Butter Croissant</span>
+          <span class="font-bold">$4.20</span>
+        </div>
+        <div class="flex items-center gap-2 text-[12px]">
+          <button class="bg-white px-2 py-1 rounded">−</button>
+          <span>1</span>
+          <button style="background:#2481cc;color:white;padding:2px 8px;border-radius:4px">+</button>
+          <span class="text-gray-500 ml-2">× $4.20</span>
+        </div>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-xl mt-3">
+        <div class="flex justify-between font-bold">
+          <span>Subtotal:</span><span>$19.40</span>
+        </div>
+        <p class="text-[10px] text-gray-500 mt-2">
+          Tap the button at the bottom to send your order to the bot for checkout.
+        </p>
+      </div>
+    </div>
+    <button style="background:#2481cc;color:white;width:100%;padding:14px;border-radius:12px;font-weight:600;margin-top:16px;font-size:14px">Send order — $19.40</button>
+  </div>
+  <div class="small-label">14 · WebApp cart</div>
+</div></div>
+
+</div>
+</body>
+</html>

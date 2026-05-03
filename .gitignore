@@ -1,0 +1,39 @@
+# Secrets & local config
+.env
+.env.*
+!.env.example
+
+# SQLite databases
+shop.db
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs & runtime artefacts
+*.log
+*.recovered
+
+# Optional: do not commit generated product photos (uncomment if you store them
+# externally or generate them at deploy time).
+# assets/photos/*.jpg
+# assets/photos/*.png

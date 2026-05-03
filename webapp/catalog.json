@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Espresso",
+    "description": "A single 30 ml shot pulled from our house blend. Thick golden crema, syrupy body, notes of dark chocolate and toasted hazelnut.",
+    "price": 3.5,
+    "photo": ""
+  },
+  {
+    "id": 2,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Doppio",
+    "description": "Double espresso for serious mornings. Two shots, 60 ml total, intense and full-bodied with a rich crema.",
+    "price": 4.5,
+    "photo": ""
+  },
+  {
+    "id": 3,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Americano",
+    "description": "A double espresso lengthened with hot water — clean, smooth and aromatic. Served at 240 ml.",
+    "price": 4.0,
+    "photo": ""
+  },
+  {
+    "id": 4,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Cappuccino",
+    "description": "Italian classic: equal parts espresso, steamed milk and silky foam. Topped with a delicate rosetta latte art.",
+    "price": 4.8,
+    "photo": ""
+  },
+  {
+    "id": 5,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Caffè Latte",
+    "description": "Smooth and creamy: one espresso shot stretched with steamed milk and a thin layer of velvety microfoam. 350 ml.",
+    "price": 5.2,
+    "photo": ""
+  },
+  {
+    "id": 6,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Flat White",
+    "description": "Antipodean favourite — double ristretto with steamed milk and paper-thin microfoam. Coffee-forward, no sugar needed.",
+    "price": 5.0,
+    "photo": ""
+  },
+  {
+    "id": 7,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Mocha",
+    "description": "Espresso, dark Belgian chocolate and steamed milk, finished with whipped cream and a dusting of cocoa. The dessert in a cup.",
+    "price": 5.8,
+    "photo": ""
+  },
+  {
+    "id": 8,
+    "category": "Hot Coffee Drinks",
+    "emoji": "☕",
+    "name": "Caramel Macchiato",
+    "description": "Layered drink: vanilla, steamed milk, espresso and a swirl of caramel sauce. Sweet, balanced, indulgent.",
+    "price": 5.5,
+    "photo": ""
+  },
+  {
+    "id": 9,
+    "category": "Cold Coffee",
+    "emoji": "🧊",
+    "name": "Iced Latte",
+    "description": "Double espresso poured over cold milk and ice. Refreshing, balanced, served in a 400 ml glass.",
+    "price": 5.4,
+    "photo": ""
+  },
+  {
+    "id": 10,
+    "category": "Cold Coffee",
+    "emoji": "🧊",
+    "name": "Iced Americano",
+    "description": "Two espresso shots over ice and chilled water. Clean, crisp, low-calorie pick-me-up.",
+    "price": 4.5,
+    "photo": ""
+  },
+  {
+    "id": 11,
+    "category": "Cold Coffee",
+    "emoji": "🧊",
+    "name": "Cold Brew",
+    "description": "Coarsely ground beans steeped in cold water for 18 hours. Naturally sweet, low-acid, served black over ice.",
+    "price": 5.2,
+    "photo": ""
+  },
+  {
+    "id": 12,
+    "category": "Cold Coffee",
+    "emoji": "🧊",
+    "name": "Nitro Cold Brew",
+    "description": "Cold brew infused with nitrogen on tap. Cascading creamy head, silky texture, no sugar or milk required.",
+    "price": 6.2,
+    "photo": ""
+  },
+  {
+    "id": 13,
+    "category": "Cold Coffee",
+    "emoji": "🧊",
+    "name": "Coffee Frappé",
+    "description": "Blended iced coffee with milk, ice and a touch of sugar, topped with whipped cream and chocolate drizzle.",
+    "price": 6.0,
+    "photo": ""
+  },
+  {
+    "id": 14,
+    "category": "Cold Coffee",
+    "emoji": "🧊",
+    "name": "Affogato",
+    "description": "A scoop of vanilla bean gelato \"drowned\" in a fresh hot espresso. Italian dessert and coffee in one.",
+    "price": 6.5,
+    "photo": ""
+  },
+  {
+    "id": 15,
+    "category": "Tea & Other",
+    "emoji": "🍵",
+    "name": "English Breakfast Tea",
+    "description": "Robust black tea blend, malty and full-bodied. Served with a slice of lemon or a splash of milk, your choice.",
+    "price": 3.8,
+    "photo": ""
+  },
+  {
+    "id": 16,
+    "category": "Tea & Other",
+    "emoji": "🍵",
+    "name": "Sencha Green Tea",
+    "description": "Premium Japanese sencha — vegetal, sweet and grassy. Brewed at 75 °C to preserve delicate flavour.",
+    "price": 4.2,
+    "photo": ""
+  },
+  {
+    "id": 17,
+    "category": "Tea & Other",
+    "emoji": "🍵",
+    "name": "Matcha Latte",
+    "description": "Ceremonial-grade matcha whisked with steamed milk. Earthy, vibrant green, rich in antioxidants. Available hot or iced.",
+    "price": 5.5,
+    "photo": ""
+  },
+  {
+    "id": 18,
+    "category": "Tea & Other",
+    "emoji": "🍵",
+    "name": "Masala Chai Latte",
+    "description": "House-made chai concentrate with cardamom, cinnamon, ginger and clove, stretched with steamed milk. Spicy and warming.",
+    "price": 5.2,
+    "photo": ""
+  },
+  {
+    "id": 19,
+    "category": "Tea & Other",
+    "emoji": "🍵",
+    "name": "Hot Chocolate",
+    "description": "Belgian dark chocolate melted into steamed whole milk, finished with marshmallows and cocoa powder.",
+    "price": 5.0,
+    "photo": ""
+  },
+  {
+    "id": 20,
+    "category": "Pastries & Desserts",
+    "emoji": "🥐",
+    "name": "Butter Croissant",
+    "description": "Hand-laminated 27-layer croissant baked fresh every morning. Crisp, flaky, buttery — best with espresso.",
+    "price": 4.2,
+    "photo": ""
+  },
+  {
+    "id": 21,
+    "category": "Pastries & Desserts",
+    "emoji": "🥐",
+    "name": "Pain au Chocolat",
+    "description": "Two batons of dark Valrhona chocolate wrapped in our buttery laminated dough. Warmed on request.",
+    "price": 4.8,
+    "photo": ""
+  },
+  {
+    "id": 22,
+    "category": "Pastries & Desserts",
+    "emoji": "🥐",
+    "name": "New York Cheesecake",
+    "description": "Classic baked cheesecake on a graham crust, topped with house-made strawberry coulis. Slice 120 g.",
+    "price": 6.5,
+    "photo": ""
+  },
+  {
+    "id": 23,
+    "category": "Pastries & Desserts",
+    "emoji": "🥐",
+    "name": "Tiramisu",
+    "description": "Authentic Italian tiramisu with mascarpone, espresso-soaked savoiardi and Marsala wine. Dusted with cocoa.",
+    "price": 6.8,
+    "photo": ""
+  },
+  {
+    "id": 24,
+    "category": "Pastries & Desserts",
+    "emoji": "🥐",
+    "name": "Blueberry Muffin",
+    "description": "Moist sour-cream muffin packed with wild blueberries and finished with a crunchy demerara sugar top.",
+    "price": 4.0,
+    "photo": ""
+  },
+  {
+    "id": 25,
+    "category": "Pastries & Desserts",
+    "emoji": "🥐",
+    "name": "Double Chocolate Brownie",
+    "description": "Fudgy 70% dark chocolate brownie with walnuts and a glossy ganache top. Naturally gluten-free.",
+    "price": 4.5,
+    "photo": ""
+  },
+  {
+    "id": 26,
+    "category": "Single Origin Beans",
+    "emoji": "🌱",
+    "name": "Ethiopian Yirgacheffe (250 g)",
+    "description": "Bright and floral with notes of jasmine, bergamot and ripe peach. Washed process, light roast. Perfect for pour-over.",
+    "price": 18.5,
+    "photo": ""
+  },
+  {
+    "id": 27,
+    "category": "Single Origin Beans",
+    "emoji": "🌱",
+    "name": "Colombian Huila Supremo (250 g)",
+    "description": "Balanced cup with caramel sweetness, milk chocolate and a soft red apple finish. Medium roast — works equally well as filter or espresso.",
+    "price": 16.0,
+    "photo": ""
+  },
+  {
+    "id": 28,
+    "category": "Single Origin Beans",
+    "emoji": "🌱",
+    "name": "Kenya AA Nyeri (250 g)",
+    "description": "Juicy and complex: blackcurrant, tomato vine, brown sugar. An SCA-87 cupping score from a small Nyeri cooperative.",
+    "price": 22.0,
+    "photo": ""
+  },
+  {
+    "id": 29,
+    "category": "Single Origin Beans",
+    "emoji": "🌱",
+    "name": "Guatemala Antigua (250 g)",
+    "description": "Volcanic-soil grown beans with cocoa, pipe tobacco and brown sugar notes. Medium-dark roast, full body.",
+    "price": 17.5,
+    "photo": ""
+  },
+  {
+    "id": 30,
+    "category": "Single Origin Beans",
+    "emoji": "🌱",
+    "name": "Brazil Cerrado (250 g)",
+    "description": "Low-acidity, smooth and nutty with notes of milk chocolate and almond. An everyday favourite, pulped natural process.",
+    "price": 14.0,
+    "photo": ""
+  },
+  {
+    "id": 31,
+    "category": "Espresso Blends",
+    "emoji": "🫘",
+    "name": "House Espresso Blend (1 kg)",
+    "description": "Our signature 70/30 Brazil-Ethiopia blend. Hazelnut, dark chocolate, creamy body. Designed for milk drinks but shines as a straight shot.",
+    "price": 38.0,
+    "photo": ""
+  },
+  {
+    "id": 32,
+    "category": "Espresso Blends",
+    "emoji": "🫘",
+    "name": "Dark Roast Italian Blend (500 g)",
+    "description": "Old-school Italian profile — bold, smoky, with bittersweet chocolate. Cuts cleanly through milk for unforgettable cappuccinos.",
+    "price": 22.0,
+    "photo": ""
+  },
+  {
+    "id": 33,
+    "category": "Espresso Blends",
+    "emoji": "🫘",
+    "name": "Decaf Swiss Water Blend (500 g)",
+    "description": "99.9% caffeine-free using the chemical-free Swiss Water process. Notes of cocoa, almond and dried fig. Tastes like real coffee — not a compromise.",
+    "price": 21.0,
+    "photo": ""
+  },
+  {
+    "id": 34,
+    "category": "Brewing Equipment",
+    "emoji": "⚙️",
+    "name": "Hario V60-02 Ceramic Dripper",
+    "description": "The pour-over classic. 60-degree cone, spiral ribs and a single large hole for full control over flow rate. Includes 40 paper filters.",
+    "price": 28.9,
+    "photo": ""
+  },
+  {
+    "id": 35,
+    "category": "Brewing Equipment",
+    "emoji": "⚙️",
+    "name": "AeroPress Original",
+    "description": "Brews a clean, full-flavoured cup in under a minute. Travel-friendly, near-indestructible. Includes 350 micro-filters.",
+    "price": 39.95,
+    "photo": ""
+  },
+  {
+    "id": 36,
+    "category": "Brewing Equipment",
+    "emoji": "⚙️",
+    "name": "Chemex 6-Cup Brewer",
+    "description": "Iconic hourglass borosilicate carafe with wooden collar and leather tie. Produces an exceptionally clean, tea-like cup.",
+    "price": 49.0,
+    "photo": ""
+  },
+  {
+    "id": 37,
+    "category": "Brewing Equipment",
+    "emoji": "⚙️",
+    "name": "French Press 1 L",
+    "description": "Classic borosilicate French press with stainless mesh filter. Full-bodied, oils and all — the easiest way to brew at home.",
+    "price": 32.0,
+    "photo": ""
+  },
+  {
+    "id": 38,
+    "category": "Accessories",
+    "emoji": "🎁",
+    "name": "Acaia Pearl Brewing Scale",
+    "description": "0.1 g resolution, 20 ms response time, built-in brewing timer and Bluetooth app. The competition standard for serious home baristas.",
+    "price": 165.0,
+    "photo": ""
+  },
+  {
+    "id": 39,
+    "category": "Accessories",
+    "emoji": "🎁",
+    "name": "Ceramic Mug Set (2 × 250 ml)",
+    "description": "Hand-thrown stoneware mugs in matte navy. Comfortable handle, thick walls keep coffee hot. Microwave and dishwasher safe.",
+    "price": 24.0,
+    "photo": ""
+  },
+  {
+    "id": 40,
+    "category": "Accessories",
+    "emoji": "🎁",
+    "name": "Stainless Travel Thermos (500 ml)",
+    "description": "Double-wall vacuum insulated tumbler — keeps coffee hot for 12 h or cold brew icy for 24 h. Leak-proof lid.",
+    "price": 32.0,
+    "photo": ""
+  }
+]

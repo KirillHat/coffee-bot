@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roastline Coffee — Shop</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    /* Use Telegram's native theme variables so the app feels integrated. */
+    :root {
+      --tg-bg: var(--tg-theme-bg-color, #ffffff);
+      --tg-text: var(--tg-theme-text-color, #000000);
+      --tg-hint: var(--tg-theme-hint-color, #999999);
+      --tg-link: var(--tg-theme-link-color, #2481cc);
+      --tg-button: var(--tg-theme-button-color, #2481cc);
+      --tg-button-text: var(--tg-theme-button-text-color, #ffffff);
+      --tg-secondary-bg: var(--tg-theme-secondary-bg-color, #f0f0f0);
+    }
+    body { background: var(--tg-bg); color: var(--tg-text); }
+    .card { background: var(--tg-secondary-bg); }
+    .btn-primary { background: var(--tg-button); color: var(--tg-button-text); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo } = React;
+
+// ---------------------------------------------------------------------------
+// Roastline Coffee — Telegram WebApp catalog.
+// On checkout it hands the cart back to the bot via Telegram.WebApp.sendData.
+// The bot's web_app_data handler reads it and resumes the normal order flow.
+// ---------------------------------------------------------------------------
+
+const tg = window.Telegram && window.Telegram.WebApp;
+
+function App() {
+  // Lazy initialiser — reads window.__CATALOG__ at mount, AFTER bootstrap()
+  // has fetched catalog.json. Avoids the race where module-level `const`
+  // captures an empty array before the fetch resolves.
+  const [CATALOG] = useState(() => window.__CATALOG__ || []);
+  const [cart, setCart] = useState({});      // {productId: quantity}
+  const [activeCat, setActiveCat] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [view, setView] = useState("home"); // home | category | product | cart
+
+  // Initialise Telegram WebApp.
+  useEffect(() => {
+    if (!tg) return;
+    tg.ready();
+    tg.expand();
+    tg.MainButton.setParams({ text: "Open Cart", color: tg.themeParams.button_color });
+  }, []);
+
+  // Aggregate cart numbers.
+  const cartCount = useMemo(
+    () => Object.values(cart).reduce((s, q) => s + q, 0),
+    [cart]
+  );
+  const cartSubtotal = useMemo(() => {
+    return Object.entries(cart).reduce((sum, [pid, qty]) => {
+      const product = CATALOG.find(p => p.id === Number(pid));
+      return sum + (product ? product.price * qty : 0);
+    }, 0);
+  }, [cart]);
+
+  // Telegram MainButton — context-sensitive across screens.
+  useEffect(() => {
+    if (!tg) return;
+    if (view === "cart" && cartCount > 0) {
+      tg.MainButton.setText(`Send order — $${cartSubtotal.toFixed(2)}`);
+      tg.MainButton.show();
+      const onClick = () => {
+        const items = Object.entries(cart).map(([pid, qty]) => ({
+          id: Number(pid),
+          quantity: qty,
+        }));
+        tg.sendData(JSON.stringify({ items, subtotal: cartSubtotal }));
+        tg.close();
+      };
+      tg.MainButton.onClick(onClick);
+      return () => tg.MainButton.offClick(onClick);
+    } else if (cartCount > 0) {
+      tg.MainButton.setText(`Open Cart (${cartCount})`);
+      tg.MainButton.show();
+      const onClick = () => setView("cart");
+      tg.MainButton.onClick(onClick);
+      return () => tg.MainButton.offClick(onClick);
+    } else {
+      tg.MainButton.hide();
+    }
+  }, [view, cartCount, cartSubtotal, cart]);
+
+  // Categories: derive from catalog.
+  const categories = useMemo(() => {
+    const seen = new Map();
+    for (const p of CATALOG) {
+      if (!seen.has(p.category)) {
+        seen.set(p.category, { name: p.category, emoji: p.emoji, count: 0 });
+      }
+      seen.get(p.category).count += 1;
+    }
+    return Array.from(seen.values());
+  }, []);
+
+  const addToCart = (productId) => {
+    setCart(prev => ({ ...prev, [productId]: (prev[productId] || 0) + 1 }));
+    if (tg) tg.HapticFeedback.impactOccurred("light");
+  };
+  const decFromCart = (productId) => {
+    setCart(prev => {
+      const q = (prev[productId] || 0) - 1;
+      const next = { ...prev };
+      if (q <= 0) delete next[productId]; else next[productId] = q;
+      return next;
+    });
+  };
+
+  return (
+    <div className="max-w-md mx-auto p-4 pb-24">
+      {view !== "home" && (
+        <button
+          className="text-[var(--tg-link)] mb-4 text-sm flex items-center gap-1"
+          onClick={() => {
+            if (view === "product") setView("category");
+            else if (view === "cart") setView("home");
+            else setView("home");
+          }}
+        >
+          ← Back
+        </button>
+      )}
+
+      {view === "home" && (
+        <div>
+          <div className="text-center mb-6">
+            <h1 className="text-2xl font-bold mb-2">☕ Roastline Coffee</h1>
+            <p className="text-[var(--tg-hint)] text-sm">Specialty coffee, delivered.</p>
+          </div>
+          {categories.length === 0 ? (
+            <p className="text-center text-[var(--tg-hint)] py-8">
+              Loading catalog…
+            </p>
+          ) : (
+            <div className="space-y-2">
+              {categories.map(cat => (
+                <button
+                  key={cat.name}
+                  className="card w-full p-4 rounded-xl flex justify-between items-center text-left"
+                  onClick={() => { setActiveCat(cat.name); setView("category"); }}
+                >
+                  <span className="font-medium">{cat.emoji} {cat.name}</span>
+                  <span className="text-[var(--tg-hint)] text-sm">{cat.count} →</span>
+                </button>
+              ))}
+            </div>
+          )}
+          <button
+            className="btn-primary mt-6 w-full p-3 rounded-xl font-medium"
+            onClick={() => setView("cart")}
+          >
+            🧺 View Cart{cartCount > 0 && ` (${cartCount})`}
+          </button>
+        </div>
+      )}
+
+      {view === "category" && (
+        <div>
+          <h2 className="text-xl font-bold mb-4">{activeCat}</h2>
+          <div className="space-y-2">
+            {CATALOG.filter(p => p.category === activeCat).map(p => (
+              <button
+                key={p.id}
+                className="card w-full p-4 rounded-xl flex justify-between items-center text-left"
+                onClick={() => { setSelectedProduct(p); setView("product"); }}
+              >
+                <span className="font-medium">{p.name}</span>
+                <span className="text-[var(--tg-link)] font-semibold">${p.price.toFixed(2)}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {view === "product" && selectedProduct && (
+        <div>
+          {selectedProduct.photo && (
+            <img
+              src={selectedProduct.photo}
+              alt={selectedProduct.name}
+              className="w-full rounded-xl mb-4"
+              onError={(e) => e.target.style.display = "none"}
+            />
+          )}
+          <h2 className="text-xl font-bold mb-2">{selectedProduct.name}</h2>
+          <p className="text-2xl font-bold text-[var(--tg-link)] mb-3">
+            ${selectedProduct.price.toFixed(2)}
+          </p>
+          <p className="text-sm leading-relaxed mb-6">{selectedProduct.description}</p>
+
+          <div className="flex items-center gap-3">
+            {(cart[selectedProduct.id] || 0) > 0 ? (
+              <>
+                <button
+                  className="card w-12 h-12 rounded-xl text-xl font-bold"
+                  onClick={() => decFromCart(selectedProduct.id)}
+                >−</button>
+                <span className="font-bold text-lg">{cart[selectedProduct.id]} in cart</span>
+                <button
+                  className="btn-primary w-12 h-12 rounded-xl text-xl font-bold"
+                  onClick={() => addToCart(selectedProduct.id)}
+                >+</button>
+              </>
+            ) : (
+              <button
+                className="btn-primary w-full p-3 rounded-xl font-medium"
+                onClick={() => addToCart(selectedProduct.id)}
+              >
+                ➕ Add to cart
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {view === "cart" && (
+        <div>
+          <h2 className="text-xl font-bold mb-4">🧺 Your Cart</h2>
+          {cartCount === 0 ? (
+            <p className="text-[var(--tg-hint)] text-center py-8">
+              Cart is empty. Browse the catalog to add coffee.
+            </p>
+          ) : (
+            <div className="space-y-2">
+              {Object.entries(cart).map(([pid, qty]) => {
+                const p = CATALOG.find(x => x.id === Number(pid));
+                if (!p) return null;
+                return (
+                  <div key={pid} className="card p-3 rounded-xl">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-medium text-sm">{p.name}</span>
+                      <span className="font-bold">${(p.price * qty).toFixed(2)}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <button
+                        className="card w-8 h-8 rounded"
+                        onClick={() => decFromCart(p.id)}
+                      >−</button>
+                      <span>{qty}</span>
+                      <button
+                        className="btn-primary w-8 h-8 rounded"
+                        onClick={() => addToCart(p.id)}
+                      >+</button>
+                      <span className="text-[var(--tg-hint)] ml-2">× ${p.price.toFixed(2)}</span>
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="card p-4 rounded-xl mt-4">
+                <div className="flex justify-between font-bold text-lg">
+                  <span>Subtotal:</span>
+                  <span>${cartSubtotal.toFixed(2)}</span>
+                </div>
+                <p className="text-xs text-[var(--tg-hint)] mt-2">
+                  Tap the button at the bottom to send your order to the bot
+                  for checkout.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Bootstrap: ensure catalog data is available before mounting the app.
+async function bootstrap() {
+  if (!window.__CATALOG__ || window.__CATALOG__.length === 0) {
+    try {
+      const r = await fetch("./catalog.json");
+      if (r.ok) window.__CATALOG__ = await r.json();
+    } catch (e) {
+      console.warn("catalog.json not found", e);
+    }
+  }
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App />);
+}
+bootstrap();
+  </script>
+</body>
+</html>
