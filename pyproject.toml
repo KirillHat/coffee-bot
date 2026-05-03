@@ -1,0 +1,29 @@
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [
+    ".venv",
+    "venv",
+    "screenshots",   # mockup tooling, not production code
+    "webapp",        # has its own static frontend
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "W",   # pycodestyle warnings
+]
+ignore = [
+    "E501",  # line too long — readability beats strict 100ch
+    "B008",  # function calls in argument defaults (FastAPI/aiogram pattern)
+    "B904",  # raise from in exception handlers — overzealous for our cases
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]  # tests intentionally set BOT_TOKEN before importing

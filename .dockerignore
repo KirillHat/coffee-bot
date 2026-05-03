@@ -1,0 +1,57 @@
+# Don't copy local secrets, runtime artefacts, dev tooling or VCS history
+# into the image. Mirrors .gitignore but tailored for Docker.
+
+# Secrets & local config
+.env
+.env.*
+!.env.example
+
+# SQLite (mounted as a named volume in production)
+shop.db
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# VCS
+.git/
+.gitignore
+.github/
+
+# Logs & runtime artefacts
+*.log
+*.recovered
+
+# Docs / dev tooling we don't need at runtime
+README.md
+CHANGELOG.md
+LICENSE
+DEMO_VIDEO.md
+upwork_description.md
+docker-compose.yml
+Dockerfile
+.dockerignore
+screenshots/
+tests/
+webapp/build_catalog.py

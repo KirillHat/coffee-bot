@@ -1,0 +1,42 @@
+# Roastline Coffee — one-command deploy for the Telegram shop bot.
+#
+# Usage:
+#   1. cp .env.example .env  &&  edit .env  (BOT_TOKEN, ADMIN_IDS, etc.)
+#   2. docker compose up -d
+#   3. docker compose logs -f
+#
+# Updates:
+#   docker compose pull && docker compose up -d --build
+#
+# The shop.db lives on a named volume so it survives container rebuilds.
+
+services:
+  bot:
+    build: .
+    image: roastline-coffee-bot:latest
+    container_name: roastline-coffee-bot
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # Override the file path so it lands inside the persistent volume.
+      DB_FILENAME: /data/shop.db
+    volumes:
+      - shop-data:/data
+      # Mount product photos read-only so the catalog rendering works.
+      - ./assets:/app/assets:ro
+    # No ports exposed: the bot uses long polling against api.telegram.org.
+    healthcheck:
+      test: ["CMD", "python", "-c", "import bot"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+volumes:
+  shop-data:
+    driver: local

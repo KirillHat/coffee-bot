@@ -12,7 +12,7 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from database import Category, Product, CartItem
+from database import CartItem, Category, Product
 
 
 def main_menu_kb(*, webapp_url: str | None = None) -> InlineKeyboardMarkup:

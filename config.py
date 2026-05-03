@@ -60,7 +60,7 @@ class Config:
         return bool(self.webapp_url)
 
     @classmethod
-    def load(cls) -> "Config":
+    def load(cls) -> Config:
         token = os.getenv("BOT_TOKEN")
         if not token or not token.strip():
             raise RuntimeError(

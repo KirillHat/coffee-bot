@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 from html import escape
 
-from aiogram import F, Router
+from aiogram import Router
 from aiogram.types import (
     InlineQuery,
     InlineQueryResultArticle,

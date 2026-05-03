@@ -36,7 +36,6 @@ from config import Config
 from database import Database
 from keyboards.inline import main_menu_kb
 from states.order import CheckoutStates
-from utils.telegram import replace_or_edit
 
 router = Router(name="payments")
 log = logging.getLogger(__name__)

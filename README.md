@@ -1,9 +1,13 @@
 # Roastline Coffee — Telegram Shop Bot
 
+[![CI](https://github.com/KirillHat/coffee-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/KirillHat/coffee-bot/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/KirillHat/coffee-bot/branch/main/graph/badge.svg)](https://codecov.io/gh/KirillHat/coffee-bot)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![aiogram 3.13](https://img.shields.io/badge/aiogram-3.13-blue)](https://docs.aiogram.dev/)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Telegram Payments](https://img.shields.io/badge/Telegram-Payments-2481cc?logo=telegram&logoColor=white)](https://core.telegram.org/bots/payments)
 [![WebApp](https://img.shields.io/badge/WebApp-React%2018%20+%20Tailwind-2481cc?logo=telegram&logoColor=white)](https://kirillhat.github.io/coffee-bot-webapp/)
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ed?logo=docker&logoColor=white)](Dockerfile)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Live demo](https://img.shields.io/badge/Live%20demo-@VelvetMorning__bot-2481cc?logo=telegram&logoColor=white)](https://t.me/VelvetMorning_bot)
 
@@ -267,6 +271,40 @@ After `python bot.py` is running:
 9. Confirm → user gets ✅, owner chat receives the order.
 10. Run `/orders_all` from the admin account → the new order is at the top.
 11. Tap **My orders** as the customer → only your own orders show, even with no Telegram username set.
+
+## 🧪 Tests
+
+The repo ships a **pytest suite** covering the database layer, parsing,
+keyboards and rate limiter — 46 tests, runs under 2 seconds:
+
+```bash
+pip install -r requirements-dev.txt
+pytest                  # run everything
+pytest --cov=.          # with coverage report
+```
+
+GitHub Actions runs the suite on Python 3.10 / 3.11 / 3.12, plus
+`ruff check` and a Docker image build, on every push / pull request.
+
+## 🐳 Docker
+
+One-command production deploy:
+
+```bash
+cp .env.example .env  &&  edit .env
+docker compose up -d
+docker compose logs -f
+```
+
+The compose stack:
+
+- Builds a slim multi-stage image (~90 MB, runs as non-root user)
+- Persists the SQLite DB on a named volume (`shop-data`) so it survives rebuilds
+- Mounts `assets/` read-only for product photos
+- Restarts on crash (`unless-stopped`) with health check + capped JSON logs
+
+For local development, `python bot.py` after `source .venv/bin/activate`
+still works — Docker is just one of two supported deployment paths.
 
 ## 💳 Enabling card payments
 
