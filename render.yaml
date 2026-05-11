@@ -1,0 +1,40 @@
+# render.yaml — Render.com blueprint for the Telegram bot.
+#
+# Render's "background worker" service is the right shape for a long-polling
+# bot — no public HTTP, no ports exposed, just a process that keeps running.
+#
+# First-time deploy:
+#   1. Push this repo to GitHub.
+#   2. Render → New → Blueprint → connect this repo → Apply.
+#   3. Fill in the four secret env vars when prompted.
+#   4. Render auto-builds the Dockerfile and starts the worker.
+#
+# Disk persistence: Render attaches a 1 GB disk at /data; shop.db is written
+# there so it survives redeploys.
+
+services:
+  - type: worker
+    name: roastline-coffee-bot
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free                      # upgrade to starter ($7/mo) if free tier sleeps too aggressively
+    autoDeploy: true                # redeploy on every push to main
+    disk:
+      name: shop-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: BOT_TOKEN
+        sync: false                 # set in Render dashboard; never commit
+      - key: ADMIN_IDS
+        sync: false
+      - key: OWNER_CHAT_ID
+        sync: false
+      - key: PAYMENT_PROVIDER_TOKEN
+        sync: false
+      - key: WEBAPP_URL
+        sync: false
+      - key: CURRENCY
+        value: USD
+      - key: DB_FILENAME
+        value: /data/shop.db

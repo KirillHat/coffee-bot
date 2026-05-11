@@ -1,0 +1,43 @@
+# fly.toml — Fly.io configuration for the Telegram bot (long-polling worker)
+#
+# First-time deploy from your laptop:
+#   curl -L https://fly.io/install.sh | sh
+#   fly auth signup            # or `fly auth login`
+#   fly launch --no-deploy --copy-config --name roastline-coffee-bot
+#   fly secrets set BOT_TOKEN=<...> ADMIN_IDS=<...> OWNER_CHAT_ID=<...> \
+#                   PAYMENT_PROVIDER_TOKEN=<...> WEBAPP_URL=<...>
+#   fly volumes create shop_data --size 1 --region fra
+#   fly deploy
+#
+# Subsequent deploys: `fly deploy` (auto-builds the Dockerfile).
+# Logs: `fly logs`.
+
+app = "roastline-coffee-bot"          # change if the name is taken
+primary_region = "fra"                # pick one close to your users
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  # Non-secret defaults — secrets go via `fly secrets set`.
+  CURRENCY = "USD"
+  DB_FILENAME = "/data/shop.db"
+
+# This bot uses long-polling against api.telegram.org, no HTTP listener.
+# A single VM is enough; fly's free tier covers it.
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
+
+# Persist SQLite across restarts. Volume must be created once before deploy:
+#   fly volumes create shop_data --size 1 --region fra
+[[mounts]]
+  source = "shop_data"
+  destination = "/data"
+
+[deploy]
+  strategy = "immediate"              # restart in place; no rolling needed for a single-VM worker
+
+[processes]
+  bot = "python bot.py"

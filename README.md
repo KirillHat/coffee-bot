@@ -304,7 +304,42 @@ The compose stack:
 - Restarts on crash (`unless-stopped`) with health check + capped JSON logs
 
 For local development, `python bot.py` after `source .venv/bin/activate`
-still works — Docker is just one of two supported deployment paths.
+still works — Docker is just one of three supported deployment paths.
+
+## ☁️ Cloud deploy (Fly.io / Render)
+
+Both blueprints are committed; pick whichever you prefer.
+
+### Fly.io (one-time setup)
+
+```bash
+curl -L https://fly.io/install.sh | sh
+fly auth signup                                  # or `fly auth login`
+fly launch --no-deploy --copy-config             # uses fly.toml from this repo
+fly secrets set \
+  BOT_TOKEN=<...> \
+  ADMIN_IDS=<...> \
+  OWNER_CHAT_ID=<...> \
+  PAYMENT_PROVIDER_TOKEN=<...> \
+  WEBAPP_URL=<...>
+fly volumes create shop_data --size 1 --region fra
+fly deploy
+```
+
+Subsequent updates: `fly deploy`. Logs: `fly logs`. Free tier (~3 small VMs)
+is enough for a bot with long polling.
+
+### Render (zero-CLI deploy)
+
+1. Push the repo to GitHub (already done if you cloned this).
+2. Render → **New → Blueprint** → connect this repo → **Apply**.
+3. Fill in `BOT_TOKEN`, `ADMIN_IDS`, `OWNER_CHAT_ID`,
+   `PAYMENT_PROVIDER_TOKEN`, `WEBAPP_URL` when prompted.
+4. Render auto-builds the `Dockerfile` and starts the worker. Every push to
+   `main` redeploys.
+
+Both providers persist `shop.db` on a 1 GB attached volume at `/data`, so
+orders survive container rebuilds.
 
 ## 💳 Enabling card payments
 
